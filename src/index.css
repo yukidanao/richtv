@@ -1,0 +1,66 @@
+:root {
+
+    --bg: #141414;
+
+    --surface: #1b1b1b;
+
+    --surface-hover: #252525;
+
+    --text: #ffffff;
+
+    --muted: #b3b3b3;
+
+    --primary: #E50914;
+
+    --border: #2d2d2d;
+
+    --radius: 14px;
+
+    --transition: .35s cubic-bezier(.22, .61, .36, 1);
+
+    --card: var(--surface);
+    --card-hover: var(--surface-hover);
+
+    --accent: var(--primary);
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(229, 9, 20, .14), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 213, 79, .08), transparent 24%),
+        linear-gradient(180deg, #111 0%, #0f0f0f 46%, #101010 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+h1.title {
+    max-width: 1600px;
+    margin: 42px auto 20px;
+    padding: 0 2px;
+    font-size: clamp(2rem, 2.6vw, 2.9rem);
+    line-height: 1.05;
+    letter-spacing: -.04em;
+    font-weight: 800;
+    text-wrap: balance;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, .45);
+}
+
+h1.title::after {
+    content: "";
+    display: block;
+    width: 96px;
+    height: 4px;
+    margin-top: 14px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), rgba(255, 255, 255, .14));
+    box-shadow: 0 0 24px rgba(229, 9, 20, .32);
+}

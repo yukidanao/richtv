@@ -1,0 +1,554 @@
+/* ======================
+   GRID
+====================== */
+
+.movie-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(240px, 1fr));
+
+    gap: 18px;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
+
+    padding: 4px 0 22px;
+
+    overflow: visible;
+}
+
+/* ======================
+   CARD
+====================== */
+
+.movie-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0)) var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .06);
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, .34);
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition);
+
+    transform-origin: center bottom;
+
+    cursor: pointer;
+
+    z-index: 1;
+}
+
+.movie-card:hover {
+
+    transform: scale(1.06);
+
+    z-index: 999;
+
+    background: var(--card-hover);
+    box-shadow:
+        0 28px 64px rgba(0, 0, 0, .62),
+        0 0 0 1px rgba(255, 255, 255, .08);
+}
+
+.movie-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, .14), transparent 34%);
+
+    opacity: 0;
+
+    transition: opacity var(--transition);
+
+    pointer-events: none;
+}
+
+.movie-card:hover::before {
+
+    opacity: 1;
+}
+
+/* Main card container */
+
+.movie-card-inner {
+
+    overflow: hidden;
+
+    border-radius: var(--radius);
+
+    background: var(--card);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, .28);
+
+    transition:
+        background .3s,
+        box-shadow .35s;
+}
+
+.movie-card:hover .movie-card-inner {
+
+    background: var(--card-hover);
+
+    box-shadow:
+        0 28px 64px rgba(0, 0, 0, .58),
+        0 0 0 1px rgba(255, 255, 255, .08);
+
+}
+
+/* ======================
+   POSTER
+====================== */
+
+.poster {
+
+    position: relative;
+
+    aspect-ratio: 2/3;
+
+    overflow: hidden;
+
+}
+
+.poster img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1s ease;
+
+}
+
+.movie-card:hover img {
+
+    transform: scale(1.12);
+
+}
+
+/* Cinematic dark gradient */
+
+.poster::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, .9),
+            rgba(0, 0, 0, .52) 34%,
+            rgba(0, 0, 0, .08) 68%,
+            transparent);
+
+}
+
+.poster::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, .12), transparent 26%);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+/* ======================
+   RATING
+====================== */
+
+.rating {
+
+    position: absolute;
+
+    top: 14px;
+    right: 14px;
+
+    z-index: 3;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #ffd54f, #ffbf2f);
+
+    color: #111;
+
+    font-size: .78rem;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, .25);
+
+}
+
+/* ======================
+   INFO PANEL
+====================== */
+
+.info {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 2;
+
+    padding: 20px 18px 18px;
+
+    background:
+        linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, .72) 16%, rgba(10, 10, 10, .96) 100%);
+    transition: transform var(--transition), background .25s ease;
+
+    transform: translateY(58%);
+
+    transition: transform var(--transition);
+
+}
+
+.movie-card:hover .info {
+
+    transform: translateY(0);
+
+}
+
+.movie-card:hover .info {
+    background:
+        linear-gradient(to top,
+            rgba(24, 24, 24, 1),
+            rgba(24, 24, 24, .97),
+            rgba(24, 24, 24, .82),
+            rgba(24, 24, 24, 0));
+}
+
+/* ======================
+   TYPOGRAPHY
+====================== */
+
+.info h3 {
+
+    font-size: 1.04rem;
+
+    line-height: 1.14;
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+
+    text-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.35em;
+
+}
+
+.meta {
+
+    display: flex;
+
+    gap: 12px;
+
+    font-size: .78rem;
+
+    color: var(--muted);
+
+    margin-bottom: 12px;
+
+}
+
+.genres {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+}
+
+.genres span {
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .06));
+
+    border: 1px solid rgba(255, 255, 255, .12);
+
+    backdrop-filter: blur(8px);
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: .71rem;
+    font-weight: 600;
+    letter-spacing: .01em;
+    color: #f3f3f3;
+
+}
+
+.info p {
+
+    color: rgba(255, 255, 255, .84);
+
+    line-height: 1.5;
+
+    font-size: .84rem;
+
+    margin-bottom: 16px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+}
+
+/* ======================
+   BUTTONS
+====================== */
+
+.actions {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+.actions button {
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .08));
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    color: white;
+
+    backdrop-filter: blur(8px);
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.actions button:hover {
+
+    transform: translateY(-2px);
+
+    background: rgba(255, 255, 255, .95);
+
+    color: black;
+
+}
+
+.actions .play {
+
+    width: 48px;
+
+    background: var(--accent);
+
+    color: white;
+
+}
+
+.actions .play:hover {
+
+    background: #ff3b43;
+
+    color: white;
+
+}
+
+/* ======================
+   STAGGER ANIMATIONS
+====================== */
+
+.meta,
+.genres,
+.info p,
+.actions {
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+
+}
+
+.movie-card:hover .meta {
+
+    opacity: 1;
+    transform: none;
+
+    transition-delay: .08s;
+
+}
+
+.movie-card:hover .genres {
+
+    opacity: 1;
+    transform: none;
+
+    transition-delay: .16s;
+
+}
+
+.movie-card:hover p {
+
+    opacity: 1;
+    transform: none;
+
+    transition-delay: .24s;
+
+}
+
+.movie-card:hover .actions {
+
+    opacity: 1;
+    transform: none;
+
+    transition-delay: .32s;
+
+}
+
+/* ======================
+   NICE MICROINTERACTIONS
+====================== */
+
+.movie-card:hover .rating {
+
+    transform: scale(1.05);
+
+}
+
+.rating {
+
+    transition: .25s;
+
+}
+
+.actions button:active {
+
+    transform: scale(.92);
+
+}
+
+/* ======================
+   STREAMING SERVICE FOCUS
+====================== */
+
+.movie-grid .movie-card {
+    transition:
+        transform var(--transition),
+        filter .35s ease,
+        opacity .35s ease;
+}
+
+.movie-grid:hover .movie-card {
+    filter:
+        brightness(.82) saturate(.88) blur(.2px);
+
+    transform: scale(.98);
+
+    opacity: .85;
+}
+
+.movie-grid:hover .movie-card:hover {
+
+    filter:
+        brightness(1) saturate(1) blur(0);
+
+    transform: scale(1.06);
+
+    opacity: 1;
+
+    z-index: 999;
+
+}
+
+
+
+/* ======================
+   MOBILE
+====================== */
+
+@media (max-width:768px) {
+
+    body {
+
+        padding: 18px;
+
+    }
+
+    .movie-card:hover {
+
+        transform: none;
+
+        background:
+            linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, .72) 16%, rgba(10, 10, 10, .96) 100%);
+
+    }
+
+    .info {
+
+        transform: translateY(0);
+
+    }
+
+    .meta,
+    .genres,
+    .info p,
+    .actions {
+
+        opacity: 1;
+        transform: none;
+
+    }
+
+}
