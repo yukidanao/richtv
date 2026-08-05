@@ -1,4 +1,4 @@
-const baseUrl = 'https://richtvapi.onrender.com/api/movies';
+const baseUrl = 'https://richtvapi.vercel.app/api/movies';
 
 export const urls = {
     allMovieList: `${baseUrl}/all`,
