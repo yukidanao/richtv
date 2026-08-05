@@ -13,6 +13,7 @@ function MovieDetails() {
     const [logo, setLogo] = useState(null);
     const [cast, setCast] = useState([]);
     const [recommendations, setRecommendations] = useState([]);
+    const [trailer, setTrailer] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -22,11 +23,12 @@ function MovieDetails() {
         async function loadAll() {
             setLoading(true);
             try {
-                const [detailsRes, logoRes, castRes, recoRes] = await Promise.all([
+                const [detailsRes, logoRes, castRes, recoRes, trailerRes] = await Promise.all([
                     fetch(`${urls.movieDetails}/${movieId}`),
                     fetch(`${urls.movieLogo}/${movieId}`),
                     fetch(`${urls.movieCast}/${movieId}`),
                     fetch(`${urls.movieRecommendation}/${movieId}`),
+                    fetch(`${urls.movieTrailer}/${movieId}`),
                 ]);
 
                 if (!detailsRes.ok) throw new Error("Could not fetch movie details");
@@ -35,13 +37,19 @@ function MovieDetails() {
                 const logoData = logoRes.ok ? await logoRes.json() : null;
                 const castData = castRes.ok ? await castRes.json() : null;
                 const recoData = recoRes.ok ? await recoRes.json() : null;
+                const trailerData = trailerRes.ok ? await trailerRes.json() : null;
 
                 if (!active) return;
+
+                const videos = Array.isArray(trailerData) ? trailerData : [];
+                const officialTrailer = videos.find((v) => v.site === "YouTube" && v.type === "Trailer" && v.official);
+                const anyTrailer = videos.find((v) => v.site === "YouTube" && v.type === "Trailer");
 
                 setMovie(details);
                 setLogo(logoData?.file_path ? logoData : null);
                 setCast(Array.isArray(castData) ? castData : []);
                 setRecommendations(Array.isArray(recoData?.results) ? recoData.results : []);
+                setTrailer((officialTrailer || anyTrailer)?.key || null);
             } catch (error) {
                 console.error("Failed to load movie details", error);
                 if (active) setMovie(null);
@@ -81,7 +89,17 @@ function MovieDetails() {
     return (
         <div className="movie-details">
             <section className="movie-details-hero">
-                <img className="movie-details-backdrop" src={backdrop} alt="" />
+                {!playing && trailer ? (
+                    <iframe
+                        className="movie-details-trailer"
+                        src={`https://www.youtube.com/embed/${trailer}?autoplay=1&controls=0&disablekb=1&loop=1&playlist=${trailer}&rel=0&modestbranding=1&playsinline=1`}
+                        title={`${movie.title} trailer`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                    />
+                ) : (
+                    <img className="movie-details-backdrop" src={backdrop} alt="" />
+                )}
 
                 <div className="movie-details-scrim movie-details-scrim--left" />
                 <div className="movie-details-scrim movie-details-scrim--bottom" />

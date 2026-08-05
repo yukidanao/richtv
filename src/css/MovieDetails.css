@@ -28,6 +28,19 @@
     object-fit: cover;
 }
 
+.movie-details-trailer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 177.78vh;
+    height: 56.25vw;
+    min-width: 100%;
+    min-height: 100%;
+    border: none;
+    pointer-events: none;
+}
+
 .movie-details-scrim {
     position: absolute;
     inset: 0;

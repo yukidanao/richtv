@@ -32,7 +32,7 @@ function Player({ movieId, onClose }) {
         <div className="player" ref={containerRef}>
             <iframe
                 className="player__frame"
-                src={`https://vidsrc.sbs/embed/movie/${movieId}`}
+                src={`https://www.vidking.net/embed/movie/${movieId}?autoPlay=true`}
                 title="Video player"
                 allowFullScreen
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

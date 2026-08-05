@@ -11,5 +11,6 @@ export const urls = {
     movieDetails: `${baseUrl}/details`,
     movieLogo: `${baseUrl}/logo`,
     movieCast: `${baseUrl}/cast`,
-    movieRecommendation: `${baseUrl}/recommendations`
+    movieRecommendation: `${baseUrl}/recommendations`,
+    movieTrailer: `${baseUrl}/trailer`
 };
