@@ -30,7 +30,7 @@ function Navbar() {
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
                     <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
                     <li><Link to="/movies" onClick={() => setMenuOpen(false)}>Movies</Link></li>
-                    <li><a href="#" onClick={() => setMenuOpen(false)}>TV Shows</a></li>
+                    <li><Link to="/tv" onClick={() => setMenuOpen(false)}>TV Shows</Link></li>
                     <li><a href="#" onClick={() => setMenuOpen(false)}>New & Popular</a></li>
                     <li><a href="#" onClick={() => setMenuOpen(false)}>My List</a></li>
                     <li className="mobile-actions">

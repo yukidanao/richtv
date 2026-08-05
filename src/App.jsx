@@ -7,6 +7,8 @@ import Hero from './component/Hero'
 import TV from './component/TV'
 import MovieList from './component/MovieList'
 import MovieDetails from './component/MovieDetails'
+import TVList from './component/TVList'
+import TVDetails from './component/TVDetails'
 
 function App() {
     const location = useLocation()
@@ -37,6 +39,8 @@ function App() {
                     }
                 />
                 <Route path='/movies' element={<MovieList />} />
+                <Route path='/tv' element={<TVList />} />
+                <Route path='/tv/:tvId' element={<TVDetails />} />
                 <Route path='/movie/:movieId' element={<MovieDetails />} />
             </Routes>
         </>

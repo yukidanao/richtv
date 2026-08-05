@@ -12,5 +12,12 @@ export const urls = {
     movieLogo: `${baseUrl}/logo`,
     movieCast: `${baseUrl}/cast`,
     movieRecommendation: `${baseUrl}/recommendations`,
-    movieTrailer: `${baseUrl}/trailer`
+    movieTrailer: `${baseUrl}/trailer`,
+    allTVList: `${baseUrl}/tv/all`,
+    searchTV: `${baseUrl}/tv/search`,
+    tvDetails: `${baseUrl}/tv/details`,
+    tvLogo: `${baseUrl}/tv/logo`,
+    tvTrailer: `${baseUrl}/tv/trailer`,
+    tvCast: `${baseUrl}/tv/cast`,
+    tvRecommendation: `${baseUrl}/tv/recommendations`
 };

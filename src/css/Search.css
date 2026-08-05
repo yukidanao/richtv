@@ -68,6 +68,43 @@
     transform: scale(1.05);
 }
 
+.search-type-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.search-type-tab {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: #f5f5f5;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.search-type-tab:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(246, 196, 83, 0.55);
+}
+
+.search-type-tab--active,
+.search-type-tab[aria-selected="true"] {
+    background: #f6c453;
+    border-color: #f6c453;
+    color: #111;
+}
+
+.search-type-badge {
+    color: #f6c453;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 .search-results {
     flex: 1;
     overflow-y: auto;

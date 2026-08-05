@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import "../css/Player.css";
 
-function Player({ movieId, onClose }) {
+function Player({ movieId, type = "movie", season = 1, episode = 1, onClose }) {
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -28,11 +28,16 @@ function Player({ movieId, onClose }) {
         };
     }, [onClose]);
 
+    const src =
+        type === "tv"
+            ? `https://www.vidking.net/embed/tv/${movieId}/${season}/${episode}?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`
+            : `https://www.vidking.net/embed/movie/${movieId}?color=e50914&autoPlay=true`;
+
     return (
         <div className="player" ref={containerRef}>
             <iframe
                 className="player__frame"
-                src={`https://www.vidking.net/embed/movie/${movieId}?autoPlay=true`}
+                src={src}
                 title="Video player"
                 allowFullScreen
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
