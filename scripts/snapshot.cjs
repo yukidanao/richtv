@@ -27,17 +27,28 @@ function findLocalBrowser() {
 }
 
 (async () => {
-    const local = findLocalBrowser();
-    if (local) config.puppeteerExecutablePath = local;
-
-    // Common flags for Linux/CI build environments (harmless elsewhere).
+    // On Linux/CI (e.g. Cloudflare Pages) use @sparticuz/chromium, a headless
+    // Chromium that runs without the X11 libraries puppeteer's bundled build needs.
     if (process.platform !== "win32") {
-        config.puppeteerArgs = [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-gpu",
-        ];
+        try {
+            const chromium = require("@sparticuz/chromium");
+            const { executablePath, args, headless } = chromium.default || chromium;
+            config.puppeteerExecutablePath = await executablePath();
+            if (Array.isArray(args)) config.puppeteerArgs = args;
+            if (headless !== undefined) config.headless = headless;
+        } catch (e) {
+            console.warn("⚠️  Could not load @sparticuz/chromium:", e.message);
+        }
+    }
+
+    // Fall back to a locally installed browser (Edge/Chrome on Windows, system Chrome on Linux).
+    if (!config.puppeteerExecutablePath) {
+        const local = findLocalBrowser();
+        if (local) config.puppeteerExecutablePath = local;
+    }
+
+    if (process.platform !== "win32" && !config.puppeteerArgs) {
+        config.puppeteerArgs = ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage", "--disable-gpu"];
     }
 
     try {
@@ -48,14 +59,12 @@ function findLocalBrowser() {
         );
 
         if (isLaunchFailure) {
-            // The build environment has no usable Chrome/Chromium (e.g. Cloudflare Pages
-            // lacks the X11 libraries old puppeteer's Chromium needs). This is not fatal:
-            // the site deploys as a normal SPA and Google renders it client-side. The
-            // static index.html still ships all meta/OG/JSON-LD tags.
+            // No usable Chrome/Chromium in this build environment. Not fatal: the
+            // site deploys as a client-rendered SPA and the static index.html still
+            // ships all meta/OG/JSON-LD tags.
             console.warn(
                 "⚠️  react-snap could not launch a browser in this build environment, so static pre-rendering was skipped. " +
-                "The site will deploy as a client-rendered SPA (fine for Google, which executes JS). " +
-                "To enable pre-rendering here, provide a working Chrome via the CHROME_PATH env var or install @sparticuz/chromium."
+                "The site will deploy as a client-rendered SPA (fine for Google, which executes JS)."
             );
             process.exitCode = 0;
         } else {

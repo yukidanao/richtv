@@ -13,7 +13,11 @@
   "reactSnap": {
     "source": "dist",
     "publicPath": "/",
-    "include": ["/", "/movies", "/tv"],
+    "include": [
+      "/",
+      "/movies",
+      "/tv"
+    ],
     "crawl": false,
     "minifyHtml": false,
     "minifyCss": false,
@@ -28,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@sparticuz/chromium": "^149.0.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
