@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react";
+import { Link } from "react-router";
 import { urls } from "../constants/urls";
 import '../css/TV.css'
 
@@ -82,7 +83,7 @@ function TV() {
 
                     <div className="tv-grid">
                         {tvshows.map(tvshow => (
-                        <div className="tv-card" key={tvshow.id}>
+                        <Link className="tv-card" key={tvshow.id} to={`/tv/${tvshow.id}`}>
 
                             <div className="poster">
 
@@ -125,7 +126,7 @@ function TV() {
 
                             </div>
 
-                        </div>
+                        </Link>
                     ))}
 
                     </div>
