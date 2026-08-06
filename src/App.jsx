@@ -9,6 +9,7 @@ import MovieList from './component/MovieList'
 import MovieDetails from './component/MovieDetails'
 import TVList from './component/TVList'
 import TVDetails from './component/TVDetails'
+import Seo from './component/Seo'
 
 function App() {
     const location = useLocation()
@@ -28,6 +29,12 @@ function App() {
                     path='/'
                     element={
                         <>
+                            <Seo
+                                title='Rich TV — Watch Free Movies & TV Shows Online'
+                                description='Watch free movies and TV shows online in HD on Rich TV. Stream new releases, popular titles and trending series instantly — no sign-up, no subscription.'
+                                path='/'
+                                keywords='free movies, watch free movies online, Rich TV, free streaming, watch movies free, free tv shows, stream movies online'
+                            />
                             <Hero onPlay={(m) => openMovie(m.id)} onInfo={(m) => openMovie(m.id)} />
                             <main className="page-content">
                                 <Movie />

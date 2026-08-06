@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { urls } from '../constants/urls';
 import "../css/Movie.css"
 
@@ -36,7 +36,6 @@ function Movie() {
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         async function loadMovies() {
@@ -86,7 +85,7 @@ function Movie() {
                     <div className="movie-grid">
 
                         {movies.map(movie => (
-                            <div className="movie-card" key={movie.id} onClick={() => navigate(`/movie/${movie.id}`)}>
+                            <Link className="movie-card" key={movie.id} to={`/movie/${movie.id}`}>
 
                             <div className="poster">
 
@@ -129,7 +128,7 @@ function Movie() {
 
                             </div>
 
-                        </div>
+                        </Link>
                     ))}
                     </div>
                 </>

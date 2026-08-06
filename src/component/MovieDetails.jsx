@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router";
+import { useParams, Link } from "react-router";
 import { Play, Info, ChevronLeft } from "lucide-react";
 import { urls } from "../constants/urls";
 import Player from "./Player";
+import Seo from "./Seo";
 import "../css/MovieDetails.css";
 import "../css/Movie.css";
 
 function MovieDetails() {
     const { movieId } = useParams();
-    const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
     const [logo, setLogo] = useState(null);
     const [cast, setCast] = useState([]);
@@ -88,6 +88,30 @@ function MovieDetails() {
 
     return (
         <div className="movie-details">
+            <Seo
+                title={movie.title ? `${movie.title} (${year}) — Watch Free Online | Rich TV` : `Movie Details — ${movieId} | Rich TV`}
+                description={movie.overview ? movie.overview.slice(0, 160) : `Watch ${movie.title || "this movie"} online free in HD on Rich TV. No subscription needed.`}
+                path={`/movie/${movieId}`}
+                image={backdrop}
+                keywords={`${movie.title || ""}, free movies, watch ${movie.title || "movies"} online, Rich TV`}
+                jsonLd={
+                    movie.title
+                        ? {
+                              "@context": "https://schema.org",
+                              "@type": "Movie",
+                              name: movie.title,
+                              ...(movie.tagline ? { alternateName: movie.tagline } : {}),
+                              ...(year ? { datePublished: movie.release_date || `${year}-01-01` } : {}),
+                              ...(movie.runtime ? { duration: `PT${movie.runtime}M` } : {}),
+                              ...(movie.overview ? { description: movie.overview } : {}),
+                              ...(Array.isArray(movie.genres)
+                                  ? { genre: movie.genres.map((g) => g.name) }
+                                  : {}),
+                              ...(movie.vote_average ? { aggregateRating: { "@type": "AggregateRating", ratingValue: movie.vote_average, bestRating: 10 } } : {}),
+                          }
+                        : null
+                }
+            />
             <section className="movie-details-hero">
                 {!playing && trailer ? (
                     <iframe
@@ -172,7 +196,7 @@ function MovieDetails() {
                     <h2 className="movie-details-section-title">You might also like</h2>
                     <div className="movie-grid">
                         {recommendations.map((item) => (
-                            <div className="movie-card" key={item.id} onClick={() => navigate(`/movie/${item.id}`)}>
+                            <Link className="movie-card" key={item.id} to={`/movie/${item.id}`}>
                                 <div className="poster">
                                     <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
 
@@ -190,7 +214,7 @@ function MovieDetails() {
                                         <button>i</button>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>

@@ -28,6 +28,12 @@
 
     position: relative;
 
+    display: block;
+
+    color: inherit;
+
+    text-decoration: none;
+
     overflow: hidden;
 
     border-radius: var(--radius);

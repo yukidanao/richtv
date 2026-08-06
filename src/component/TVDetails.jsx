@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router";
+import { useParams, Link } from "react-router";
 import { Play, Info, ChevronLeft } from "lucide-react";
 import { urls } from "../constants/urls";
 import Player from "./Player";
+import Seo from "./Seo";
 import "../css/MovieDetails.css";
 import "../css/Movie.css";
 
 function TVDetails() {
     const { tvId } = useParams();
-    const navigate = useNavigate();
     const [tvshow, setTVShow] = useState(null);
     const [logo, setLogo] = useState(null);
     const [cast, setCast] = useState([]);
@@ -90,6 +90,30 @@ function TVDetails() {
 
     return (
         <div className="movie-details">
+            <Seo
+                title={title ? `${title} (${year}) — Watch Free Online | Rich TV` : `TV Show Details — ${tvId} | Rich TV`}
+                description={tvshow.overview ? tvshow.overview.slice(0, 160) : `Watch ${title || "this TV show"} online free in HD on Rich TV. No subscription needed.`}
+                path={`/tv/${tvId}`}
+                image={backdrop}
+                keywords={`${title || ""}, free tv shows, watch ${title || "tv shows"} online, Rich TV`}
+                jsonLd={
+                    title
+                        ? {
+                              "@context": "https://schema.org",
+                              "@type": "TVSeries",
+                              name: title,
+                              ...(year ? { startDate: tvshow.first_air_date || `${year}-01-01` } : {}),
+                              ...(tvshow.overview ? { description: tvshow.overview } : {}),
+                              ...(Array.isArray(tvshow.genres)
+                                  ? { genre: tvshow.genres.map((g) => g.name) }
+                                  : {}),
+                              ...(tvshow.vote_average
+                                  ? { aggregateRating: { "@type": "AggregateRating", ratingValue: tvshow.vote_average, bestRating: 10 } }
+                                  : {}),
+                          }
+                        : null
+                }
+            />
             <section className="movie-details-hero">
                 {!playing && trailer ? (
                     <iframe
@@ -175,7 +199,7 @@ function TVDetails() {
                     <h2 className="movie-details-section-title">You might also like</h2>
                     <div className="movie-grid">
                         {recommendations.map((item) => (
-                            <div className="movie-card" key={item.id} onClick={() => navigate(`/tv/${item.id}`)}>
+                            <Link className="movie-card" key={item.id} to={`/tv/${item.id}`}>
                                 <div className="poster">
                                     <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.name} />
 
@@ -193,7 +217,7 @@ function TVDetails() {
                                         <button>i</button>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>

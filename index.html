@@ -3,16 +3,110 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary Meta Tags -->
+  <title>Rich TV — Watch Free Movies & TV Shows Online</title>
+  <meta name="title" content="Rich TV — Watch Free Movies & TV Shows Online" />
+  <meta name="description"
+    content="Watch free movies and TV shows online in HD on Rich TV. Stream the latest movies, popular TV series, and trending titles instantly — no sign-up, no subscription. Your free movie streaming hub." />
+  <meta name="keywords"
+    content="free movies, watch free movies online, free streaming, Rich TV, watch movies free, free tv shows, stream movies online, no subscription movie streaming" />
+  <meta name="author" content="Rich TV" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#141414" />
+  <link rel="canonical" href="https://richtv.pages.dev/" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://richtv.pages.dev/" />
+  <meta property="og:title" content="Rich TV — Watch Free Movies &amp; TV Shows Online" />
+  <meta property="og:description"
+    content="Stream free movies and TV shows in HD. Discover new releases, popular movies, and binge-worthy series — instantly, no subscription." />
+  <meta property="og:site_name" content="Rich TV" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://richtv.pages.dev/favicon.svg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://richtv.pages.dev/" />
+  <meta name="twitter:title" content="Rich TV — Watch Free Movies &amp; TV Shows Online" />
+  <meta name="twitter:description"
+    content="Stream free movies and TV shows in HD. New releases, popular movies and more — instantly, no subscription." />
+  <meta name="twitter:image" content="https://richtv.pages.dev/favicon.svg" />
+
+  <!-- Geo / misc -->
+  <meta name="distribution" content="global" />
+  <meta name="rating" content="general" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <!-- Structured Data: Website -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Rich TV",
+      "alternateName": "RICH TV",
+      "url": "https://richtv.pages.dev/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://richtv.pages.dev/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+
+  <!-- Structured Data: Home page content listing -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Free Movies &amp; TV Shows",
+      "description": "Browse and watch free movies and TV shows on Rich TV.",
+      "url": "https://richtv.pages.dev/",
+      "mainEntity": [
+        { "@type": "Movie", "name": "Nightfall District" },
+        { "@type": "Movie", "name": "Glass Horizon" },
+        { "@type": "Movie", "name": "Paper Lanterns" }
+      ]
+    }
+  </script>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Rich TV</title>
+  <link rel="preload" as="image" href="https://picsum.photos/id/1039/1600/900" />
+
+  <!-- Preconnect to API + image CDN for faster loads -->
+  <link rel="preconnect" href="https://richtvapi.vercel.app" crossorigin>
+  <link rel="dns-prefetch" href="https://richtvapi.vercel.app">
+  <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+  <link rel="dns-prefetch" href="https://image.tmdb.org">
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Fallback content for crawlers that do not execute JavaScript.
+         This is replaced by the prerendered app when running the production build. -->
+    <noscript>
+      <header>
+        <p><strong>Rich TV</strong> — Watch free movies &amp; TV shows online.</p>
+      </header>
+      <main>
+        <h1>Watch Free Movies Online — Rich TV</h1>
+        <p>Stream free movies and TV shows in HD. Explore new releases, watch movies online, and discover the best free
+          streaming titles — no subscription required.</p>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/movies">Movies</a></li>
+          <li><a href="/tv">TV Shows</a></li>
+        </ul>
+      </main>
+    </noscript>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

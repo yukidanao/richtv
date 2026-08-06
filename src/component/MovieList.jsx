@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 import { urls } from "../constants/urls";
+import Seo from "./Seo";
 import "../css/MovieList.css";
 import "../css/Movie.css";
 
@@ -67,7 +68,6 @@ function MovieList() {
     const genreScrollRef = useRef(null);
     const sentinelRef = useRef(null);
     const loadingMoreRef = useRef(false);
-    const navigate = useNavigate();
 
     const hasMore = page < totalPages;
 
@@ -209,6 +209,12 @@ function MovieList() {
 
     return (
         <section className="movie-list-page">
+            <Seo
+                title="Free Movies — Watch Movies Online in HD | Rich TV"
+                description="Browse and watch free movies online in HD on Rich TV. Stream action, comedy, drama, horror and more — new releases and all-time favorites, no subscription needed."
+                path="/movies"
+                keywords="free movies, watch movies online, free movie streaming, Rich TV movies, watch full movies free"
+            />
             <div className="genre-scroll">
                 <button
                     className="genre-arrow genre-arrow--prev"
@@ -256,7 +262,7 @@ function MovieList() {
                 <>
                     <div className="movie-grid">
                         {movies.map((movie) => (
-                            <div className="movie-card" key={movie.id} onClick={() => navigate(`/movie/${movie.id}`)}>
+                            <Link className="movie-card" key={movie.id} to={`/movie/${movie.id}`}>
                                 <div className="poster">
                                     <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
@@ -284,7 +290,7 @@ function MovieList() {
                                         <button>i</button>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
 
