@@ -31,7 +31,7 @@ function Player({ movieId, type = "movie", season = 1, episode = 1, onClose }) {
     const src =
         type === "tv"
             ? `https://www.vidking.net/embed/tv/${movieId}/${season}/${episode}?color=e50914&autoPlay=true&nextEpisode=true&episodeSelector=true`
-            : `https://vidsrc.sbs/embed/movie/${movieId}?color=e50914&autoplay=1&sub=en`;
+            : `https://www.vidking.net/embed/movie/${movieId}?color=e50914&autoPlay=true`;
 
     return (
         <div className="player" ref={containerRef}>
