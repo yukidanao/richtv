@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const SITE_URL = 'https://richtv.pages.dev';
+export const SITE_URL = 'https://rich-tv.me';
 export const SITE_NAME = 'Rich TV';
 export const DEFAULT_TITLE = 'Rich TV — Watch Free Movies & TV Shows Online';
 export const DEFAULT_DESCRIPTION =
