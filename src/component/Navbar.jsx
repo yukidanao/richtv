@@ -23,8 +23,7 @@ function Navbar() {
         <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
             <div className="navbar-top">
                 <a href="#" className="navbar-brand">
-                    <span className="brand-badge">R</span>
-                    <span>Rich TV</span>
+                    <img src="/richtv.webp" alt="Rich TV" className="navbar-logo" />
                 </a>
 
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>

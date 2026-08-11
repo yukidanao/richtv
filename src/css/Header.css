@@ -46,14 +46,10 @@ body {
     letter-spacing: 0.04em;
 }
 
-.brand-badge {
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #e50914, #ff5f6d);
-    font-weight: 800;
+.navbar-logo {
+    display: block;
+    height: 48px;
+    width: auto;
 }
 
 .nav-links {
