@@ -30,8 +30,8 @@ function Player({ movieId, type = "movie", season = 1, episode = 1, onClose }) {
 
     const src =
         type === "tv"
-            ? `https://vidsrc.sbs/embed/tv/${movieId}/${season}/${episode}?color=e50914&autoplay=1&sub=en`
-            : `https://vidsrc.sbs/embed/movie/${movieId}?color=e50914&autoplay=1&sub=en`;
+            ? `https://cinesrc.st/embed/tv/${movieId}?s=${season}&e=${episode}`
+            : `https://cinesrc.st/embed/movie/${movieId}?color=e50914&autoplay=true`;
 
     return (
         <div className="player" ref={containerRef}>
